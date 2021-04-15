@@ -2,13 +2,13 @@ from pyevals import BuildClassification
 from pyevals import BuildRegression
 from pyevals import Plots
 import pandas as pd
-import warnings 
+import warnings
+
 warnings.filterwarnings('ignore')
 
 
 class BuildPlots:
-    def __init__(self,data,CategoricalFeatures,ContinuousFeatures):
-        
+    def __init__(self, data, CategoricalFeatures, ContinuousFeatures):
         """
         :param data: Your DataSet
         :param CategoricalFeatures: List of Categorical Features of the DataSet
@@ -17,24 +17,26 @@ class BuildPlots:
         self.data = data
         self.CategoricalFeatures = CategoricalFeatures
         self.ContinuousFeatures = ContinuousFeatures
-    
-        Plots.MakePlots(self.data,self.CategoricalFeatures,self.ContinuousFeatures)    
+
+        Plots.MakePlots(self.data, self.CategoricalFeatures, self.ContinuousFeatures)
+
 
 class build:
-    def __init__(self,x_train,x_test,y_train,y_test,model):
+
+    def __init__(self, X_train, X_test, y_train, y_test, model):
         """
-        :param x_train: Your x_train training data
-        :param x_test:  Your x_test to test
+        :param X_train: Your X_train training data
+        :param X_test:  Your X_test to test
         :param y_train: your y_train training data
         :param y_test:  Actual outcomes
         :parm model:   Which model you want to pass either Classification or Regression
         :return:  Will Return you a data frame with all classification algorithms.
         """
-        self.x_train = x_train
-        self.x_test = x_test
+        self.X_train = X_train
+        self.X_test = X_test
         self.y_train = y_train
         self.y_test = y_test
-        self.model=model
+        self.model = model
 
     def evaluate(self):
         """
@@ -56,83 +58,100 @@ class build:
         """
         try:
 
-            if(self.model.lower()=='classification'):
-                algorithms = ["KNN","LogisticRegression","DecisionTreeClassifier",
-                        "RandomForestClassifier","SupportVectorClassifier","QuadraticDiscriminantSnalysis",
-                        "SGDClassifier","AdaBoost","CalibratedClassifier","MultinomialNB",
-                        "BernoulliNB","GaussianNB"]
-                
-                
-                KNearestNeighbor=BuildClassification.KNearestNeighbor(self.x_train,self.x_test,self.y_train,self.y_test)
-                LogisticReg=BuildClassification.LogisticReg(self.x_train,self.x_test,self.y_train,self.y_test)
-                DecisionTree=BuildClassification.DecisionTree(self.x_train,self.x_test,self.y_train,self.y_test)
-                RandomForest=BuildClassification.RandomForest(self.x_train,self.x_test,self.y_train,self.y_test)
-                SupportVector=BuildClassification.SupportVector(self.x_train,self.x_test,self.y_train,self.y_test)
-                QuadraticDiscriminant=BuildClassification.QuadraticDiscriminant(self.x_train,self.x_test,self.y_train,self.y_test)
-                SophisticatedGradientDescent=BuildClassification.SophisticatedGradientDescent(self.x_train,self.x_test,self.y_train,self.y_test)
-                AdaBoost=BuildClassification.AdaBoost(self.x_train,self.x_test,self.y_train,self.y_test)
-                CalibratedClassifier=BuildClassification.CalibratedClassifier(self.x_train,self.x_test,self.y_train,self.y_test)
-                MultinomialNaiveBayes=BuildClassification.MultinomialNaiveBayes(self.x_train,self.x_test,self.y_train,self.y_test)
-                BernoulliNaiveBayes=BuildClassification.BernoulliNaiveBayes(self.x_train,self.x_test,self.y_train,self.y_test)
-                GaussianNaiveBayes=BuildClassification.GaussianNaiveBayes(self.x_train,self.x_test,self.y_train,self.y_test)
+            if self.model.lower() == 'classification':
+                algorithms = ["KNN", "LogisticRegression", "DecisionTreeClassifier",
+                              "RandomForestClassifier", "SupportVectorClassifier", "QuadraticDiscriminantSnalysis",
+                              "SGDClassifier", "AdaBoost", "CalibratedClassifier", "MultinomialNB",
+                              "BernoulliNB", "GaussianNB"]
 
-                functions = [KNearestNeighbor,LogisticReg,DecisionTree,RandomForest,
-                                SupportVector,QuadraticDiscriminant,SophisticatedGradientDescent,
-                                AdaBoost,CalibratedClassifier,MultinomialNaiveBayes,
-                                BernoulliNaiveBayes,GaussianNaiveBayes]
-      
-                Accuracy = [functions[algorithm][0] for algorithm in range(12)]
-                RecallScore = [functions[algorithm][1] for algorithm in range(12)]
-                PresicionScore = [functions[algorithm][2] for algorithm in range(12)]
-                RocAucScore = [functions[algorithm][3] for algorithm in range(12)]
-                f1Score = [functions[algorithm][4] for algorithm in range(12)]
-                
-      
-                df = {"Accuracy":Accuracy,"RecallScore":RecallScore,
-                          "PresicionScore":PresicionScore,"RocAucScore":RocAucScore,
-                          "f1Score":f1Score}
+                KNearestNeighbor = BuildClassification.KNearestNeighbor(self.X_train, self.X_test, self.y_train,
+                                                                        self.y_test)
+                LogisticReg = BuildClassification.LogisticReg(self.X_train, self.X_test, self.y_train, self.y_test)
+                DecisionTree = BuildClassification.DecisionTree(self.X_train, self.X_test, self.y_train, self.y_test)
+                RandomForest = BuildClassification.RandomForest(self.X_train, self.X_test, self.y_train, self.y_test)
+                SupportVector = BuildClassification.SupportVector(self.X_train, self.X_test, self.y_train, self.y_test)
+                QuadraticDiscriminant = BuildClassification.QuadraticDiscriminant(self.X_train, self.X_test,
+                                                                                  self.y_train, self.y_test)
+                SophisticatedGradientDescent = BuildClassification.SophisticatedGradientDescent(self.X_train,
+                                                                                                self.X_test,
+                                                                                                self.y_train,
+                                                                                                self.y_test)
+                AdaBoost = BuildClassification.AdaBoost(self.X_train, self.X_test, self.y_train, self.y_test)
+                CalibratedClassifier = BuildClassification.CalibratedClassifier(self.X_train, self.X_test, self.y_train,
+                                                                                self.y_test)
+                MultinomialNaiveBayes = BuildClassification.MultinomialNaiveBayes(self.X_train, self.X_test,
+                                                                                  self.y_train, self.y_test)
+                BernoulliNaiveBayes = BuildClassification.BernoulliNaiveBayes(self.X_train, self.X_test, self.y_train,
+                                                                              self.y_test)
+                GaussianNaiveBayes = BuildClassification.GaussianNaiveBayes(self.X_train, self.X_test, self.y_train,
+                                                                            self.y_test)
 
-                df = pd.DataFrame(df,index=algorithms)
+                functions = [KNearestNeighbor, LogisticReg, DecisionTree, RandomForest,
+                             SupportVector, QuadraticDiscriminant, SophisticatedGradientDescent,
+                             AdaBoost, CalibratedClassifier, MultinomialNaiveBayes,
+                             BernoulliNaiveBayes, GaussianNaiveBayes]
+
+                Accuracy = [functions[algorithm][0] for algorithm in range(len(functions))]
+                RecallScore = [functions[algorithm][1] for algorithm in range(len(functions))]
+                PresicionScore = [functions[algorithm][2] for algorithm in range(len(functions))]
+                RocAucScore = [functions[algorithm][3] for algorithm in range(len(functions))]
+                f1Score = [functions[algorithm][4] for algorithm in range(len(functions))]
+
+                df = {"Accuracy": Accuracy, "RecallScore": RecallScore,
+                      "PresicionScore": PresicionScore, "RocAucScore": RocAucScore,
+                      "f1Score": f1Score}
+
+                df = pd.DataFrame(df, index=algorithms)
 
                 def highlight_max(s):
                     is_max = s == s.max()
                     return ['background-color: yellow' if v else ' ' for v in is_max]
+
                 return df.style.apply(highlight_max)
 
-            elif(self.model.lower()=='regression'):
+            elif self.model.lower() == 'regression':
 
-                algorithms = ["LinearRegression","PolynomialRegression","RidgeRegression","LassoRegression","SupportVectorRegressor","GradientBoostingRegression","PLSRegression"]
+                algorithms = ["LinearRegression", "PolynomialRegression", "RidgeRegression", "LassoRegression",
+                              "SupportVectorRegressor", "GradientBoostingRegression", "PLSRegression", "DTRegressor",
+                              "KNNRegressor", "RFRegressor"]
 
-                LinearReg = BuildRegression.LinearReg(self.x_train,self.x_test,self.y_train,self.y_test)
-                PolynomialRegression = BuildRegression.PolynomialRegression(self.x_train,self.x_test,self.y_train,self.y_test)
-                RidgeRegression = BuildRegression.RidgeRegression(self.x_train,self.x_test,self.y_train,self.y_test)
-                LassoRegression = BuildRegression.LassoRegression(self.x_train,self.x_test,self.y_train,self.y_test)
-                SupportVectorRegressor = BuildRegression.SupportVectorRegressor(self.x_train,self.x_test,self.y_train,self.y_test)
-                GradientBoostingRegression = BuildRegression.GradientBoostingRegression(self.x_train,self.x_test,self.y_train,self.y_test)
-                PartialLeastSquares = BuildRegression.PartialLeastSquares(self.x_train,self.x_test,self.y_train,self.y_test)
+                LinearReg = BuildRegression.LinearReg(self.X_train, self.X_test, self.y_train, self.y_test)
+                PolynomialRegression = BuildRegression.PolynomialRegression(self.X_train, self.X_test, self.y_train,
+                                                                            self.y_test)
+                RidgeRegression = BuildRegression.RidgeRegression(self.X_train, self.X_test, self.y_train, self.y_test)
+                LassoRegression = BuildRegression.LassoRegression(self.X_train, self.X_test, self.y_train, self.y_test)
+                SupportVectorRegressor = BuildRegression.SupportVectorRegressor(self.X_train, self.X_test, self.y_train,
+                                                                                self.y_test)
+                GradientBoostingRegression = BuildRegression.GradientBoostingRegression(self.X_train, self.X_test,
+                                                                                        self.y_train, self.y_test)
+                PartialLeastSquares = BuildRegression.PartialLeastSquares(self.X_train, self.X_test, self.y_train,
+                                                                          self.y_test)
+                DecisionTreeReg = BuildRegression.DTRegressor(self.X_train, self.X_test, self.y_train, self.y_test)
+                RandomForestReg = BuildRegression.RFRegressor(self.X_train, self.X_test, self.y_train, self.y_test)
+                KNNReg = BuildRegression.KNNRegressor(self.X_train, self.X_test, self.y_train, self.y_test)
 
-                functions = [LinearReg,PolynomialRegression,RidgeRegression,LassoRegression,SupportVectorRegressor,GradientBoostingRegression,PartialLeastSquares]
+                functions = [LinearReg, PolynomialRegression, RidgeRegression, LassoRegression, SupportVectorRegressor,
+                             GradientBoostingRegression, PartialLeastSquares, DecisionTreeReg, RandomForestReg, KNNReg]
 
+                R2Score = [functions[algorithm][0] for algorithm in range(len(functions))]
+                AdjustedR2 = [functions[algorithm][1] for algorithm in range(len(functions))]
+                MeanAbsoluteError = [functions[algorithm][2] for algorithm in range(len(functions))]
+                MeanSquaredError = [functions[algorithm][3] for algorithm in range(len(functions))]
+                RootMeanSquaredError = [functions[algorithm][4] for algorithm in range(len(functions))]
 
-                R2Score = [functions[algorithm][0] for algorithm in range(7)]
-                AdjustedR2 = [functions[algorithm][1] for algorithm in range(7)]
-                MeanAbsoluteError = [functions[algorithm][2] for algorithm in range(7)]
-                MeanSquaredError = [functions[algorithm][3] for algorithm in range(7)]
-                RootMeanSquaredError = [functions[algorithm][4] for algorithm in range(7)]
+                df = {"1-R2Score": R2Score, "1-AdjustedR2": AdjustedR2, "MeanAbsoluteError": MeanAbsoluteError,
+                      "MeanSquaredError": MeanSquaredError, "RootMeanSquaredError": RootMeanSquaredError}
 
-
-                df = {"1-R2Score":R2Score,"1-AdjustedR2":AdjustedR2,"MeanAbsoluteError":MeanAbsoluteError,
-                "MeanSquaredError":MeanSquaredError,"RootMeanSquaredError":RootMeanSquaredError}
-
-                df = pd.DataFrame(df,index=algorithms)
+                df = pd.DataFrame(df, index=algorithms)
 
                 def highlight_min(s):
                     is_min = s == s.min()
                     return ['background-color: yellow' if v else ' ' for v in is_min]
+
                 return df.style.apply(highlight_min)
-            
+
             else:
                 print("Check the Arguments Passed.\nPlease Check the 'Usage' in the PyPi.")
 
         except:
-            print("Please check the arguments Passed.")  
+            print("Please check the arguments Passed.")

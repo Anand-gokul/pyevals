@@ -1,7 +1,7 @@
 import numpy as np
 import numbers
 from scipy.sparse import csr_matrix
-from exceptions import *
+from pyevals.exceptions import *
 
 
 def simple_error(actual: np.ndarray, predicted: np.ndarray):

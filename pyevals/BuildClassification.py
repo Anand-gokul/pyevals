@@ -1,5 +1,3 @@
-import warnings
-import numpy as np
 from utils import *
 from sklearn.metrics import accuracy_score, recall_score, precision_score, roc_auc_score, classification_report, f1_score
 from sklearn.ensemble import RandomForestClassifier
@@ -18,7 +16,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.datasets import make_classification
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics._classification import *
-from exceptions import *
+from pyevals.exceptions import *
 
 
 def metrics(actual, predicted, labels=None):
@@ -123,12 +121,12 @@ def RandomForest(X_train,X_test,y_train,y_test=None):
     """
     if y_test is not None:
         RandomForest_Classifier = RandomForestClassifier()
-        RandomForest_Classifier = RandomForest_Classifier.fit(X_train,y_train)
+        RandomForest_Classifier.fit(X_train,y_train)
         predicted = RandomForest_Classifier.predict(X_test)
         return metrics(y_test,predicted)
     else:
         RandomForest_Classifier = RandomForestClassifier()
-        RandomForest_Classifier = RandomForest_Classifier.fit(X_train, y_train)
+        RandomForest_Classifier.fit(X_train, y_train)
         predicted = RandomForest_Classifier.predict(X_test)
         return predicted
 
@@ -228,12 +226,12 @@ def CalibratedClassifier(X_train,X_test,y_train,y_test=None):
     """
     if y_test is not None:
         CalibratedClassifierCV_ = CalibratedClassifierCV()
-        CalibratedClassifierCV_ = CalibratedClassifierCV_.fit(X_train,y_train)
+        CalibratedClassifierCV_.fit(X_train,y_train)
         predicted = CalibratedClassifierCV_.predict(X_test)
         return metrics(y_test,predicted)
     else:
         CalibratedClassifierCV_ = CalibratedClassifierCV()
-        CalibratedClassifierCV_ = CalibratedClassifierCV_.fit(X_train, y_train)
+        CalibratedClassifierCV_.fit(X_train, y_train)
         predicted = CalibratedClassifierCV_.predict(X_test)
         return predicted
 
