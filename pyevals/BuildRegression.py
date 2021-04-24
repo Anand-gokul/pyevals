@@ -11,6 +11,7 @@ from sklearn.svm import SVR
 from sklearn.cross_decomposition import PLSRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from pyevals.RegressionMetrics import *
+from sklearn.metrics import r2_score
 import math
 
 import warnings
@@ -19,7 +20,7 @@ warnings.filterwarnings('ignore')
 
 
 def metrics(X_train, y_test, predicted):
-	R2_score = 1 - rsquared_score(y_test, predicted)
+	R2_score = 1 - r2_score(y_test, predicted)
 	AdjustedR2 = 1 - adj_rsquared_score(X_train, y_test, predicted, R2_score)
 	MeanAbsoluteError = mean_absolute_error(y_test, predicted)
 	MeanSquaredError = mean_squared_error(y_test, predicted)
