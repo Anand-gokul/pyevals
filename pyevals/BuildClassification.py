@@ -23,11 +23,11 @@ warnings.filterwarnings('ignore')
 
 def metrics(y_test,Prediction):
     AccuracyScore = accuracy_score(y_test,Prediction)
-    RecallScore = recall_score(y_test,Prediction,pos_label='positive',average='micro')
-    PrecisionScore = precision_score(y_test,Prediction,pos_label='positive',average='micro')
-    f1Score = f1_score(y_test,Prediction,pos_label='positive',average='micro')
+    RecallScore = recall_score(y_test,Prediction,average='macro')
+    PrecisionScore = precision_score(y_test,Prediction,average='macro')
+    f1Score = f1_score(y_test,Prediction,average='macro')
 
-    return AccuracyScore,RecallScore,PrecisionScore,f1Scosre
+    return AccuracyScore,RecallScore,PrecisionScore,f1Score
 
 class my_warning(UserWarning):
     pass
