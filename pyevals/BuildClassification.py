@@ -119,3 +119,4 @@ def BernoulliNaiveBayes(x_train,x_test,y_train,y_test):
         print('BernoulliNaiveBayes algorithm cannot be performed with standard scalar!.')
         return 0,0,0,0,0
     return metrics(y_test,Prediction)
+
