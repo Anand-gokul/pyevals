@@ -54,15 +54,14 @@ class build:
         LassoRegression, SupportVectorRegressor, GradientBoostingRegression, 
         PLSRegression.
         """
-
         try:
             if(self.model.lower()=='classification'):
                 algorithms = ["KNN","LogisticRegression","DecisionTreeClassifier",
                         "RandomForestClassifier","SupportVectorClassifier","QuadraticDiscriminantSnalysis",
                         "SGDClassifier","AdaBoost","CalibratedClassifier","MultinomialNB",
                         "BernoulliNB","GaussianNB"]
-                    
-                    
+                        
+                        
                 KNearestNeighbor=BuildClassification.KNearestNeighbor(self.x_train,self.x_test,self.y_train,self.y_test)
                 LogisticReg=BuildClassification.LogisticReg(self.x_train,self.x_test,self.y_train,self.y_test)
                 DecisionTree=BuildClassification.DecisionTree(self.x_train,self.x_test,self.y_train,self.y_test)
@@ -80,15 +79,15 @@ class build:
                                 SupportVector,QuadraticDiscriminant,SophisticatedGradientDescent,
                                 AdaBoost,CalibratedClassifier,MultinomialNaiveBayes,
                                 BernoulliNaiveBayes,GaussianNaiveBayes]
-          
+              
                 Accuracy = [functions[algorithm][0] for algorithm in range(12)]
                 RecallScore = [functions[algorithm][1] for algorithm in range(12)]
                 PresicionScore = [functions[algorithm][2] for algorithm in range(12)]
                 f1Score = [functions[algorithm][3] for algorithm in range(12)]
-                    
-          
+                        
+              
                 df = {"Accuracy":Accuracy,"RecallScore":RecallScore,
-                          "PresicionScore":PresicionScore,
+                            "PresicionScore":PresicionScore,
                           "f1Score":f1Score}
 
                 df = pd.DataFrame(df,index=algorithms)
@@ -134,4 +133,5 @@ class build:
                 print("Check the Arguments Passed.\nPlease Check the 'Usage' in the PyPi.")
 
         except:
-            print("Check the Arguments Passed")
+            print("Check the Arguments Passed.\nPlease Check the 'Usage' in the PyPi.\nMake sure that the entire data is numerical.")
+
