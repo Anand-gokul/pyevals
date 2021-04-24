@@ -1,7 +1,8 @@
-from utils import *
+from pyevals.utils import *
 import pandas as pd
 from sklearn.metrics import f1_score
-from exceptions import *
+from pyevals.exceptions import *
+
 
 
 def rsquared_score(actual, predicted):
