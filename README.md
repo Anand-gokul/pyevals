@@ -6,6 +6,11 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+<img src="https://img.shields.io/github/contributors/anand-gokul/pyevals?style=flat"/>
+<img src="https://img.shields.io/github/languages/code-size/anand-gokul/pyevals?style=flat"/>
+<img src="https://img.shields.io/github/license/anand-gokul/pyevals?style=flat"/>
+<img src="https://img.shields.io/github/stars/anand-gokul/pyevals?style=flat"/>
+<img src="https://img.shields.io/github/languages/top/anand-gokul/pyevals"/>
 
 
 <!-- TABLE OF CONTENTS -->
