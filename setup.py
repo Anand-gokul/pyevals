@@ -8,7 +8,7 @@ setuptools.setup(
     name="pyevals",
  
     #version of the module
-    version="1.3",
+    version="1.3.4",
  
     #Name of Author
     author="Gokul and Anand",
