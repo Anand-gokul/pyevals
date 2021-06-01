@@ -8,7 +8,6 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-
 def MakePlots(df, cat_features, con_features):
     mergedObject = PdfFileMerger()
 
@@ -43,7 +42,7 @@ def MakePlots(df, cat_features, con_features):
             if column < 3:
                 try:
                     axes[row, column].set_title('DistPlot :- ' + i)
-                    sns.distplot(df[i], ax=axes[row, column])
+                    sns.distplot(df[i].dropna(), ax=axes[row, column])
                     column += 1
                     if column == 3:
                         row += 1
@@ -66,7 +65,7 @@ def MakePlots(df, cat_features, con_features):
             if column < 3:
                 try:
                     axes[row, column].set_title('CountPlot :- ' + i)
-                    sns.countplot(df[i], ax=axes[row, column])
+                    sns.countplot(df[i].dropna(), ax=axes[row, column])
                     column += 1
                     if column == 3:
                         row += 1
@@ -90,7 +89,7 @@ def MakePlots(df, cat_features, con_features):
                 if column < 3:
                     try:
                         axes[row, column].set_title('BarPlot :- ' + i + ' Vs ' + j)
-                        sns.barplot(x=i, y=j, data=df, ax=axes[row, column])
+                        sns.barplot(x=i, y=j, data=df.dropna(), ax=axes[row, column])
                         column += 1
                         if column == 3:
                             row += 1
@@ -114,7 +113,7 @@ def MakePlots(df, cat_features, con_features):
                 if column < 3:
                     try:
                         axes[row, column].set_title('BoxPlot :- ' + j + ' Vs ' + i)
-                        sns.boxplot(x=j, y=i, data=df, ax=axes[row, column])
+                        sns.boxplot(x=j, y=i, data=df.dropna(), ax=axes[row, column])
                         column += 1
                         if column == 3:
                             row += 1
@@ -138,7 +137,7 @@ def MakePlots(df, cat_features, con_features):
                 if column < 3:
                     try:
                         axes[row, column].set_title('ViolinPlot :- ' + i + ' Vs ' + j)
-                        sns.violinplot(x=i, y=j, data=df, ax=axes[row, column])
+                        sns.violinplot(x=i, y=j, data=df.dropna(), ax=axes[row, column])
                         column += 1
                         if column == 3:
                             row += 1
@@ -149,15 +148,19 @@ def MakePlots(df, cat_features, con_features):
     plt.savefig("ViolinPlots.pdf")
     plt.tight_layout()
 
+
     # Pair Plot
     a = sns.pairplot(df)
     a.fig.suptitle('PairPlot :- ')
     plt.savefig("PairPlot.pdf")
 
     for i in cat_features:
-        a = sns.pairplot(df, hue=i)
-        a.fig.suptitle("PairPlot :- " + i)
-        plt.savefig("PairPlot%s.pdf" % i)
+        try:
+            a = sns.pairplot(df, hue=i)
+            a.fig.suptitle("PairPlot :- " + i)
+            plt.savefig("PairPlot%s.pdf" % i)
+        except:
+            continue
 
     CurrentDirectory = os.getcwd()
     AllFiles = os.listdir(CurrentDirectory)
